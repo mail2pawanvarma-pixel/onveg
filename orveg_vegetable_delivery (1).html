@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#e9f4e8">
+<title>orveg | Fresh Vegetables at Your Doorstep</title>
+<style>
+:root{
+  --bg:#edf5ed; --panel:#edf5ed; --ink:#20352b; --muted:#66796d;
+  --green:#28784c; --green2:#3b9963; --lime:#d6ed9b; --white:#fbfff9;
+  --shadow1:10px 10px 24px #d0dbd0; --shadow2:-10px -10px 24px #ffffff;
+  --line:#dbe7da; --danger:#b23a36;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+button,input{font:inherit}
+button{cursor:pointer}
+a{color:inherit}
+.wrap{width:min(1120px,100% - 28px);margin:auto}
+header{position:sticky;top:0;z-index:10;background:rgba(237,245,237,.9);backdrop-filter:blur(14px);border-bottom:1px solid rgba(203,220,202,.7)}
+.nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:900;font-size:1.65rem;letter-spacing:-1px}
+.logo-mark{height:39px;width:39px;border-radius:14px;background:linear-gradient(145deg,#3c9a62,#226c43);color:white;display:grid;place-items:center;box-shadow:5px 5px 12px #c6d5c6,-4px -4px 10px #fff;font-size:1.2rem}
+.nav-right{display:flex;gap:9px;align-items:center}
+.pill{border:0;border-radius:16px;padding:10px 14px;background:var(--panel);box-shadow:5px 5px 12px #d0dbd0,-5px -5px 12px #fff;color:var(--ink);font-weight:700}
+.cart-pill{background:var(--green);color:white;box-shadow:5px 5px 12px #c5d6c5,-4px -4px 10px #fff}
+.hero{display:grid;grid-template-columns:1.08fr .92fr;gap:26px;align-items:center;padding:34px 0 28px}
+.kicker{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:#e2f0df;color:var(--green);font-weight:800;font-size:.82rem;box-shadow:inset 2px 2px 5px #d0e0cd,inset -2px -2px 5px #fff}
+h1{font-size:clamp(2.25rem,5.8vw,4.5rem);line-height:1.04;letter-spacing:-2.5px;margin:18px 0 15px}
+h1 span{color:var(--green)}
+.hero p{font-size:1.05rem;color:var(--muted);line-height:1.75;max-width:510px;margin:0}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:23px}
+.primary,.secondary{border:0;border-radius:17px;padding:14px 18px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+.primary{background:linear-gradient(135deg,#328d57,#226b42);color:#fff;box-shadow:7px 7px 16px #c7d7c6,-5px -5px 14px #fff}
+.secondary{background:var(--panel);box-shadow:6px 6px 14px #d0dbd0,-6px -6px 14px #fff}
+.hero-art{min-height:280px;border-radius:34px;position:relative;overflow:hidden;background:linear-gradient(145deg,#e3f0dc,#f8fff4);box-shadow:var(--shadow1),var(--shadow2);display:grid;place-items:center}
+.orbit{position:absolute;width:245px;height:245px;border-radius:50%;border:1px solid #c6dfbd;animation:spin 24s linear infinite}
+.orbit:before,.orbit:after{content:"";position:absolute;width:16px;height:16px;background:#e5b85f;border-radius:50%;top:21px;left:35px;box-shadow:0 0 0 7px #e5b85f22}
+.orbit:after{top:auto;left:auto;bottom:26px;right:20px;background:#69a96c}
+.basket{font-size:6.2rem;filter:drop-shadow(0 13px 8px #8eac8b55);animation:bob 3s ease-in-out infinite;z-index:1}
+.float-leaf{position:absolute;font-size:2.5rem;animation:bob 3.5s ease-in-out infinite}
+.leaf1{top:22%;left:16%}.leaf2{bottom:19%;right:15%;animation-delay:.8s}.leaf3{top:15%;right:22%;animation-delay:1.3s}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-10px) rotate(4deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:10px 0 36px}
+.benefit{padding:16px;border-radius:20px;box-shadow:6px 6px 15px #d0dbd0,-6px -6px 15px #fff;display:flex;gap:11px;align-items:center}
+.benefit-icon{height:42px;width:42px;flex:0 0 42px;border-radius:14px;background:#e4f2df;display:grid;place-items:center;font-size:1.25rem}
+.benefit strong{display:block;font-size:.95rem}.benefit small{display:block;color:var(--muted);margin-top:3px;line-height:1.35}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin:30px 0 18px}
+h2{font-size:clamp(1.55rem,3vw,2.25rem);letter-spacing:-.8px;margin:0}
+.section-head p{margin:7px 0 0;color:var(--muted)}
+.minimum-note{background:#e2f1d7;color:#2c7145;border-radius:12px;padding:9px 12px;font-weight:800;font-size:.86rem;white-space:nowrap}
+.products{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.product{padding:12px;border-radius:25px;background:var(--panel);box-shadow:var(--shadow1),var(--shadow2);min-width:0;display:flex;flex-direction:column;cursor:pointer;transition:transform .22s ease,box-shadow .22s ease}.product:hover{transform:translateY(-2px)}.product.expanded{grid-column:1 / -1;display:grid;grid-template-columns:minmax(140px,220px) minmax(0,1fr);column-gap:18px;align-items:start;padding:16px}.product.expanded .product-image,.product.expanded .product-placeholder{grid-row:1 / span 6;aspect-ratio:1 / 1;max-height:260px}.product.expanded .product-details{display:block}.product-details{display:none;grid-column:2;color:var(--muted);font-size:.92rem;line-height:1.65;padding:4px 2px 12px}.product-details h4{color:var(--ink);margin:6px 0;font-size:1rem}.product-details ul{padding-left:20px;margin:5px 0 12px}.product.expanded .qty-row{grid-column:2}.product.expanded .desc{grid-column:2}.product.expanded h3,.product.expanded .price{grid-column:2}.product.expanded .expand-hint{grid-column:2}.expand-hint{font-size:.76rem;color:var(--green);font-weight:750;margin:0 2px 8px}.product.expanded .expand-hint{display:none}
+.product-image{width:100%;aspect-ratio:1.12;object-fit:cover;border-radius:18px;background:#e0ebdd;display:block}
+.product-placeholder{width:100%;aspect-ratio:1.12;border-radius:18px;background:linear-gradient(145deg,#dcebd8,#f6fff1);display:grid;place-items:center;font-size:4rem}
+.product h3{font-size:1.08rem;margin:13px 2px 5px}
+.price{font-size:1.02rem;font-weight:900;color:var(--green);margin:0 2px}
+.price small{font-size:.76rem;font-weight:600;color:var(--muted)}
+.product .desc{font-size:.84rem;line-height:1.5;color:var(--muted);margin:9px 2px 13px;flex:1}
+.qty-row{display:flex;align-items:center;gap:8px;margin-top:auto}
+.qty-row input{width:65px;border:1px solid var(--line);border-radius:11px;background:#f7fff4;padding:9px 7px;text-align:center;color:var(--ink);outline-color:var(--green)}
+.add{flex:1;border:0;border-radius:13px;padding:10px 8px;background:#dcefd6;color:#236b40;font-weight:800;box-shadow:inset 2px 2px 5px #cbdcc5,inset -2px -2px 5px #fff}
+.add:active{transform:scale(.98)}
+.add{position:relative;min-height:40px}.add-animation{display:none;position:absolute;inset:0;align-items:center;justify-content:center;background:#dcefd6;border-radius:13px}.add.is-animating .add-animation{display:flex}.add.is-animating .add-label{visibility:hidden}.add-animation lottie-player{width:42px;height:42px}
+.cart-layout{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:start;margin:32px 0}
+.cart-card,.details-card{padding:20px;border-radius:25px;background:var(--panel);box-shadow:var(--shadow1),var(--shadow2)}
+.cart-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.cart-title h2{font-size:1.5rem}
+.cart-items{display:grid;gap:10px}
+.empty{color:var(--muted);padding:22px 0;text-align:center}
+.cart-item{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.cart-item:last-child{border-bottom:0}
+.cart-item strong{display:block}.cart-item small{color:var(--muted)}
+.cart-controls{display:flex;align-items:center;gap:8px}
+.qty-btn,.remove-btn{border:0;width:30px;height:30px;border-radius:10px;background:var(--panel);box-shadow:3px 3px 7px #d0dbd0,-3px -3px 7px #fff;font-weight:900}
+.remove-btn{color:var(--danger)}
+.summary-line{display:flex;justify-content:space-between;gap:12px;margin:11px 0;color:var(--muted)}
+.summary-line.total{border-top:1px solid var(--line);padding-top:14px;color:var(--ink);font-weight:900;font-size:1.2rem}
+.minimum-warning{font-size:.85rem;line-height:1.5;color:var(--danger);margin:12px 0}
+.checkout{width:100%;margin-top:9px}
+.field{display:grid;gap:6px;margin:13px 0}
+.field label{font-size:.9rem;font-weight:750}
+.field input,.field textarea{width:100%;border:1px solid var(--line);border-radius:13px;padding:12px;background:#f8fff6;outline-color:var(--green);color:var(--ink)}
+.field textarea{min-height:75px;resize:vertical}
+.whatsapp-note{font-size:.82rem;line-height:1.55;color:var(--muted);margin:10px 0 0}
+footer{margin-top:40px;padding:25px 0 35px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+.footer-row{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#20352b;color:#fff;padding:12px 18px;border-radius:14px;z-index:30;transition:.25s;box-shadow:0 10px 25px #20352b33;font-size:.92rem;max-width:calc(100% - 28px);text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:820px){.hero{grid-template-columns:1fr;padding-top:25px}.hero-art{min-height:240px}.products{grid-template-columns:repeat(2,minmax(0,1fr))}.cart-layout{grid-template-columns:1fr}.benefits{grid-template-columns:1fr}.benefit{padding:13px}.section-head{align-items:start;flex-direction:column}.minimum-note{white-space:normal}}
+@media(max-width:520px){.product.expanded{grid-template-columns:1fr}.product.expanded .product-image,.product.expanded .product-placeholder{grid-row:auto;max-height:none;aspect-ratio:1.35}.product.expanded .product-details,.product.expanded .qty-row,.product.expanded .desc,.product.expanded h3,.product.expanded .price{grid-column:1}}
+@media(max-width:420px){.wrap{width:calc(100% - 20px)}.nav{height:62px}.logo{font-size:1.4rem}.logo-mark{width:34px;height:34px}.nav-right .pill{padding:9px 10px;font-size:.82rem}.hero h1{letter-spacing:-1.5px}.hero-art{min-height:205px}.basket{font-size:5rem}.products{gap:10px}.product{padding:9px;border-radius:20px}.product h3{font-size:.98rem}.product .desc{font-size:.79rem}.qty-row{gap:6px}.qty-row input{width:54px}.add{font-size:.82rem}.cart-card,.details-card{padding:15px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#" aria-label="orveg home" style="text-decoration:none"><span class="logo-mark">o</span><span>orveg</span></a>
+    <div class="nav-right"><a href="#products" class="pill" style="text-decoration:none">सब्ज़ियाँ</a><a href="#cart" class="pill cart-pill" style="text-decoration:none">कार्ट <span id="cart-count">0</span></a></div>
+  </div>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <div>
+      <span class="kicker">Fresh Delivery in Ambikapur</span>
+      <h1>Fresh Veggies.<br><span>Ghar Jaisa Swad.</span></h1>
+      <p>Fresh vegetables & home-style tiffin, delivered in Ambikapur.</p>
+      <div class="hero-actions"><a class="primary" href="#products">Shop Vegetables <span aria-hidden="true">→</span></a><a class="secondary" href="#cart">View Cart</a></div>
+    </div>
+    <div class="hero-art" aria-label="ताज़ी सब्ज़ियों का चित्रात्मक सजावटी भाग">
+      <div class="orbit"></div><span class="float-leaf leaf1">🥬</span><span class="float-leaf leaf2">🥕</span><span class="float-leaf leaf3">🍃</span><div class="basket">🧺</div>
+    </div>
+  </section>
+  <section class="benefits" aria-label="हमारी सुविधाएँ">
+    <div class="benefit"><div class="benefit-icon">✓</div><div><strong>Easy Ordering</strong><small>Order directly on WhatsApp</small></div></div>
+    <div class="benefit"><div class="benefit-icon">₹</div><div><strong>Minimum Order ₹100</strong><small>Minimum order value ₹100 है</small></div></div>
+    <div class="benefit"><div class="benefit-icon">⌂</div><div><strong>Ambikapur Delivery</strong><small>Delivery availability WhatsApp पर पूछें</small></div></div>
+  </section>
+
+  <section id="products">
+    <div class="section-head"><div><h2>Fresh Vegetables Today</h2><p>Quantity in kg चुनें और cart में add करें।</p></div><div class="minimum-note">न्यूनतम ऑर्डर: ₹100</div></div>
+    <div class="products" id="product-grid"></div>
+  </section>
+
+  <section class="cart-layout" id="cart">
+    <div class="cart-card">
+      <div class="cart-title"><h2>Your Cart</h2><button class="pill" id="clear-cart" type="button">Clear Cart</button></div>
+      <div class="cart-items" id="cart-items"><div class="empty">Your Cart अभी खाली है। ऊपर से सब्ज़ियाँ जोड़ें।</div></div>
+    </div>
+    <aside class="details-card">
+      <h2 style="font-size:1.5rem">Order Details</h2>
+      <div class="summary-line"><span>Items Subtotal</span><strong id="subtotal">₹0</strong></div>
+      <div class="summary-line"><span>Delivery Fee</span><strong>WhatsApp पर पुष्टि</strong></div>
+      <div class="summary-line total"><span>Total (before delivery)</span><strong id="total">₹0</strong></div>
+      <div id="minimum-warning" class="minimum-warning">ऑर्डर भेजने के लिए Minimum Order ₹100 की सब्ज़ियाँ जोड़ें।</div>
+      <div class="field"><label for="customer-name">Your Name</label><input id="customer-name" autocomplete="name" placeholder="Enter your name"></div>
+      <div class="field"><label for="customer-phone">Mobile Number</label><input id="customer-phone" inputmode="tel" autocomplete="tel" placeholder="आपका Mobile Number"></div>
+      <div class="field"><label for="customer-address">Full Delivery Address</label><textarea id="customer-address" autocomplete="street-address" placeholder="Area, street, house number, Ambikapur"></textarea></div>
+      <div class="field"><label for="customer-note">Special Instructions (optional)</label><textarea id="customer-note" placeholder="e.g. preferred ripeness or delivery time"></textarea></div>
+      <button class="primary checkout" id="send-order" type="button">Send Order on WhatsApp ↗</button>
+      <p class="whatsapp-note">बटन दबाने पर WhatsApp में आपके ऑर्डर का संदेश तैयार होगा। भेजने से पहले विवरण जाँच लें। ऑर्डर की पुष्टि और Delivery Fee WhatsApp पर तय होंगे।</p>
+    </aside>
+  </section>
+
+
+</main>
+<footer><div class="wrap footer-row"><div><strong style="color:var(--green)">orveg</strong> · ताज़ी सब्ज़ियाँ, Easy Ordering</div><div>Ambikapur, Chhattisgarh · WhatsApp: +91 93404 31036</div></div></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<script>
+const ADD_TO_CART_ANIMATION = {"v":"5.5.2","fr":59.9400024414063,"ip":0,"op":191.000007779589,"w":130,"h":130,"nm":"carrinho","ddd":0,"assets":[],"layers":[{"ddd":0,"ind":1,"ty":4,"nm":"roda4","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":1,"k":[{"i":{"x":0.667,"y":1},"o":{"x":0.727,"y":0},"t":170,"s":[84.6,89.411,0],"to":[0,1.846,0],"ti":[0,-0.74,0]},{"t":179.882507326764,"s":[84.6,93.788,0]}],"ix":2},"a":{"a":0,"k":[-22.375,41.125,0],"ix":1},"s":{"a":0,"k":[70,70,100],"ix":6}},"ao":0,"shapes":[{"ty":"gr","it":[{"d":1,"ty":"el","s":{"a":0,"k":[16,16],"ix":2},"p":{"a":0,"k":[0,0],"ix":3},"nm":"Ellipse Path 1","mn":"ADBE Vector Shape - Ellipse","hd":false},{"ty":"st","c":{"a":0,"k":[0.4117647058823529,0.3764705882352941,0.7686274509803922,1],"ix":3},"o":{"a":0,"k":100,"ix":4},"w":{"a":0,"k":3,"ix":5},"lc":2,"lj":2,"bm":0,"nm":"Stroke 1","mn":"ADBE Vector Graphic - Stroke","hd":false},{"ty":"tr","p":{"a":0,"k":[-22.375,41.125],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Ellipse 1","np":3,"cix":2,"bm":0,"ix":1,"mn":"ADBE Vector Group","hd":false},{"ty":"gr","it":[{"ty":"tr","p":{"a":0,"k":[0,0],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Group 1","np":0,"cix":2,"bm":0,"ix":2,"mn":"ADBE Vector Group","hd":false},{"ty":"tm","s":{"a":0,"k":0,"ix":1},"e":{"a":1,"k":[{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":162,"s":[0]},{"t":172.000007005704,"s":[100]}],"ix":2},"o":{"a":0,"k":0,"ix":3},"m":1,"ix":3,"nm":"Trim Paths 1","mn":"ADBE Vector Filter - Trim","hd":false}],"ip":0,"op":191.000007779589,"st":0,"bm":0},{"ddd":0,"ind":2,"ty":4,"nm":"roda3","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":1,"k":[{"i":{"x":0.667,"y":1},"o":{"x":0.727,"y":0},"t":172.118,"s":[49.338,89.411,0],"to":[0,1.846,0],"ti":[0,-0.74,0]},{"t":182.000007413012,"s":[49.338,93.788,0]}],"ix":2},"a":{"a":0,"k":[-22.375,41.125,0],"ix":1},"s":{"a":0,"k":[70,70,100],"ix":6}},"ao":0,"shapes":[{"ty":"gr","it":[{"d":1,"ty":"el","s":{"a":0,"k":[16,16],"ix":2},"p":{"a":0,"k":[0,0],"ix":3},"nm":"Ellipse Path 1","mn":"ADBE Vector Shape - Ellipse","hd":false},{"ty":"tm","s":{"a":0,"k":0,"ix":1},"e":{"a":1,"k":[{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":165,"s":[0]},{"t":175.000007127896,"s":[100]}],"ix":2},"o":{"a":0,"k":0,"ix":3},"m":1,"ix":2,"nm":"Trim Paths 1","mn":"ADBE Vector Filter - Trim","hd":false},{"ty":"st","c":{"a":0,"k":[0.4117647058823529,0.3764705882352941,0.7686274509803922,1],"ix":3},"o":{"a":0,"k":100,"ix":4},"w":{"a":0,"k":3,"ix":5},"lc":2,"lj":2,"bm":0,"nm":"Stroke 1","mn":"ADBE Vector Graphic - Stroke","hd":false},{"ty":"tr","p":{"a":0,"k":[-22.375,41.125],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Ellipse 1","np":4,"cix":2,"bm":0,"ix":1,"mn":"ADBE Vector Group","hd":false}],"ip":0,"op":191.000007779589,"st":0,"bm":0},{"ddd":0,"ind":3,"ty":4,"nm":"linha4","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[70.162,71.563,0],"ix":2},"a":{"a":0,"k":[7.375,-6.875,0],"ix":1},"s":{"a":0,"k":[70,70,100],"ix":6}},"ao":0,"shapes":[{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":0,"k":{"i":[[0,0],[0,0]],"o":[[0,0],[0,0]],"v":[[-37.375,-6.875],[47.5,-6.875]],"c":false},"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"st","c":{"a":0,"k":[0.4117647058823529,0.3764705882352941,0.7686274509803922,1],"ix":3},"o":{"a":0,"k":100,"ix":4},"w":{"a":0,"k":3,"ix":5},"lc":1,"lj":1,"ml":4,"bm":0,"nm":"Stroke 1","mn":"ADBE Vector Graphic - Stroke","hd":false},{"ty":"tr","p":{"a":0,"k":[0,0],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Shape 1","np":3,"cix":2,"bm":0,"ix":1,"mn":"ADBE Vector Group","hd":false},{"ty":"tm","s":{"a":0,"k":0,"ix":1},"e":{"a":1,"k":[{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":168,"s":[0]},{"t":192.00000782032,"s":[100]}],"ix":2},"o":{"a":0,"k":0,"ix":3},"m":1,"ix":2,"nm":"Trim Paths 1","mn":"ADBE Vector Filter - Trim","hd":false}],"ip":0,"op":191.000007779589,"st":0,"bm":0},{"ddd":0,"ind":4,"ty":4,"nm":"linha3","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[70.162,60.363,0],"ix":2},"a":{"a":0,"k":[7.375,-6.875,0],"ix":1},"s":{"a":0,"k":[70,70,100],"ix":6}},"ao":0,"shapes":[{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":0,"k":{"i":[[0,0],[0,0]],"o":[[0,0],[0,0]],"v":[[-37.375,-6.875],[52.125,-6.875]],"c":false},"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"st","c":{"a":0,"k":[0.4117647058823529,0.3764705882352941,0.7686274509803922,1],"ix":3},"o":{"a":0,"k":100,"ix":4},"w":{"a":0,"k":3,"ix":5},"lc":1,"lj":1,"ml":4,"bm":0,"nm":"Stroke 1","mn":"ADBE Vector Graphic - Stroke","hd":false},{"ty":"tr","p":{"a":0,"k":[0,0],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Shape 1","np":3,"cix":2,"bm":0,"ix":1,"mn":"ADBE Vector Group","hd":false},{"ty":"tm","s":{"a":0,"k":0,"ix":1},"e":{"a":1,"k":[{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":169,"s":[0]},{"t":187.000007616666,"s":[100]}],"ix":2},"o":{"a":0,"k":0,"ix":3},"m":1,"ix":2,"nm":"Trim Paths 1","mn":"ADBE Vector Filter - Trim","hd":false}],"ip":0,"op":191.000007779589,"st":0,"bm":0},{"ddd":0,"ind":5,"ty":4,"nm":"carrinho 2","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[65.175,65,0],"ix":2},"a":{"a":0,"k":[0,0,0],"ix":1},"s":{"a":0,"k":[70,70,100],"ix":6}},"ao":0,"shapes":[{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":0,"k":{"i":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-61.75,-47.75],[-47.75,-47.75],[-32.5,26.813],[39.5,26.563],[59.75,-22.75],[-42.75,-23.75]],"c":false},"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"st","c":{"a":0,"k":[0.4117647058823529,0.3764705882352941,0.7686274509803922,1],"ix":3},"o":{"a":0,"k":100,"ix":4},"w":{"a":0,"k":6,"ix":5},"lc":2,"lj":2,"bm":0,"nm":"Stroke 1","mn":"ADBE Vector Graphic - Stroke","hd":false},{"ty":"tr","p":{"a":0,"k":[0,0],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Shape 1","np":3,"cix":2,"bm":0,"ix":1,"mn":"ADBE Vector Group","hd":false},{"ty":"tm","s":{"a":1,"k":[{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.167],"y":[0.167]},"t":150,"s":[100]},{"t":180.00000733155,"s":[0]}],"ix":1},"e":{"a":1,"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":150,"s":[100]},{"t":151,"s":[98],"h":1},{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":154,"s":[98]},{"t":158.000006435472,"s":[100]}],"ix":2},"o":{"a":0,"k":0,"ix":3},"m":1,"ix":2,"nm":"Trim Paths 1","mn":"ADBE Vector Filter - Trim","hd":false}],"ip":0,"op":191.000007779589,"st":0,"bm":0},{"ddd":0,"ind":6,"ty":4,"nm":"preenchido","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[68.5,50,0],"ix":2},"a":{"a":0,"k":[3.5,-15,0],"ix":1},"s":{"a":1,"k":[{"i":{"x":[0.667,0.667,0.667],"y":[1,1,1]},"o":{"x":[0.333,0.333,0.333],"y":[0,0,0]},"t":164,"s":[100,0,100]},{"t":182.000007413012,"s":[100,100,100]}],"ix":6}},"ao":0,"shapes":[{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":0,"k":{"i":[[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0]],"v":[[-29.25,-15.75],[-21.75,19.75],[28,18.5],[41,-15.75]],"c":true},"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"fl","c":{"a":0,"k":[0.996078431372549,0.7137254901960784,0.28627450980392155,1],"ix":4},"o":{"a":0,"k":100,"ix":5},"r":1,"bm":0,"nm":"Fill 1","mn":"ADBE Vector Graphic - Fill","hd":false},{"ty":"tr","p":{"a":0,"k":[0,0],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Shape 1","np":3,"cix":2,"bm":0,"ix":1,"mn":"ADBE Vector Group","hd":false}],"ip":0,"op":191.000007779589,"st":0,"bm":0},{"ddd":0,"ind":7,"ty":4,"nm":"Shape Layer 2","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[65,65,0],"ix":2},"a":{"a":0,"k":[0,0,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"shapes":[{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":0,"k":{"i":[[0,0],[5.259,13.674],[0,-12.583],[0,0]],"o":[[0,0],[-5,-13],[0,6],[0,0]],"v":[[15.25,-11.5],[28,-44],[3.5,-44.75],[3.5,-15]],"c":false},"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"tm","s":{"a":1,"k":[{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":156,"s":[0]},{"t":183.000007453743,"s":[100]}],"ix":1},"e":{"a":1,"k":[{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":141,"s":[0]},{"t":167.000006802049,"s":[100]}],"ix":2},"o":{"a":0,"k":0,"ix":3},"m":1,"ix":2,"nm":"Trim Paths 1","mn":"ADBE Vector Filter - Trim","hd":false},{"ty":"st","c":{"a":0,"k":[0.996078431372549,0.7137254901960784,0.28627450980392155,1],"ix":3},"o":{"a":0,"k":100,"ix":4},"w":{"a":0,"k":6,"ix":5},"lc":2,"lj":2,"bm":0,"nm":"Stroke 1","mn":"ADBE Vector Graphic - Stroke","hd":false},{"ty":"tr","p":{"a":0,"k":[0,0],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Shape 1","np":4,"cix":2,"bm":0,"ix":1,"mn":"ADBE Vector Group","hd":false}],"ip":0,"op":191.000007779589,"st":0,"bm":0},{"ddd":0,"ind":8,"ty":4,"nm":"Shape Layer 1","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[65,65,0],"ix":2},"a":{"a":0,"k":[0,0,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"shapes":[{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":0,"k":{"i":[[0,0],[7.625,23],[-16.344,0.428]],"o":[[-31,1.375],[-3.589,-10.825],[0,0]],"v":[[0,30.625],[-47.875,5.5],[-44.344,-33.449]],"c":false},"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"tm","s":{"a":1,"k":[{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":51,"s":[100]},{"t":86.9325035408333,"s":[0]}],"ix":1},"e":{"a":1,"k":[{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":30.663,"s":[100]},{"t":66.59500271247,"s":[0]}],"ix":2},"o":{"a":0,"k":0,"ix":3},"m":1,"ix":2,"nm":"Trim Paths 1","mn":"ADBE Vector Filter - Trim","hd":false},{"ty":"st","c":{"a":0,"k":[0.4117647058823529,0.3764705882352941,0.7686274509803922,1],"ix":3},"o":{"a":0,"k":100,"ix":4},"w":{"a":1,"k":[{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":54,"s":[4.2]},{"t":67.0000027289659,"s":[6]}],"ix":5},"lc":2,"lj":2,"bm":0,"nm":"Stroke 1","mn":"ADBE Vector Graphic - Stroke","hd":false},{"ty":"tr","p":{"a":0,"k":[0,0],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Shape 1","np":4,"cix":2,"bm":0,"ix":1,"mn":"ADBE Vector Group","hd":false}],"ip":0,"op":191.000007779589,"st":0,"bm":0},{"ddd":0,"ind":9,"ty":4,"nm":"check","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[65,65,0],"ix":2},"a":{"a":0,"k":[0,0,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"shapes":[{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":0,"k":{"i":[[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0]],"v":[[15,-11.25],[-2.5,14.25],[-14.5,2]],"c":false},"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"st","c":{"a":0,"k":[0.996078431372549,0.7137254901960784,0.28627450980392155,1],"ix":3},"o":{"a":0,"k":100,"ix":4},"w":{"a":0,"k":6,"ix":5},"lc":2,"lj":2,"bm":0,"nm":"Stroke 1","mn":"ADBE Vector Graphic - Stroke","hd":false},{"ty":"tr","p":{"a":0,"k":[0,0],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Shape 1","np":3,"cix":2,"bm":0,"ix":1,"mn":"ADBE Vector Group","hd":false},{"ty":"tm","s":{"a":1,"k":[{"i":{"x":[0],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":76,"s":[100]},{"t":102.000004154545,"s":[0]}],"ix":1},"e":{"a":1,"k":[{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":135,"s":[100]},{"t":155.000006313279,"s":[0]}],"ix":2},"o":{"a":0,"k":0,"ix":3},"m":1,"ix":2,"nm":"Trim Paths 1","mn":"ADBE Vector Filter - Trim","hd":false}],"ip":0,"op":191.000007779589,"st":0,"bm":0},{"ddd":0,"ind":10,"ty":4,"nm":"circulo","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":1,"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":134,"s":[-180]},{"t":135.000005498663,"s":[-58]}],"ix":10},"p":{"a":0,"k":[65,65.25,0],"ix":2},"a":{"a":0,"k":[1.75,2.25,0],"ix":1},"s":{"a":0,"k":[100,100,100],"ix":6}},"ao":0,"shapes":[{"ty":"gr","it":[{"d":1,"ty":"el","s":{"a":0,"k":[61,61],"ix":2},"p":{"a":0,"k":[0,0],"ix":3},"nm":"Ellipse Path 1","mn":"ADBE Vector Shape - Ellipse","hd":false},{"ty":"st","c":{"a":0,"k":[0.4117647058823529,0.3764705882352941,0.7686274509803922,1],"ix":3},"o":{"a":0,"k":100,"ix":4},"w":{"a":1,"k":[{"i":{"x":[0.833],"y":[0.833]},"o":{"x":[0.167],"y":[0.167]},"t":135,"s":[6]},{"t":155.000006313279,"s":[5]}],"ix":5},"lc":2,"lj":2,"bm":0,"nm":"Stroke 1","mn":"ADBE Vector Graphic - Stroke","hd":false},{"ty":"tr","p":{"a":0,"k":[1.75,2.25],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Ellipse 1","np":3,"cix":2,"bm":0,"ix":1,"mn":"ADBE Vector Group","hd":false},{"ty":"tm","s":{"a":1,"k":[{"i":{"x":[0.947],"y":[1]},"o":{"x":[0.088],"y":[0]},"t":62,"s":[100]},{"i":{"x":[0.833],"y":[1]},"o":{"x":[0.167],"y":[0]},"t":85,"s":[0]},{"i":{"x":[0.833],"y":[1]},"o":{"x":[0.167],"y":[0]},"t":135,"s":[0]},{"t":155.000006313279,"s":[100]}],"ix":1},"e":{"a":0,"k":100,"ix":2},"o":{"a":0,"k":0,"ix":3},"m":1,"ix":2,"nm":"Trim Paths 1","mn":"ADBE Vector Filter - Trim","hd":false}],"ip":0,"op":191.000007779589,"st":0,"bm":0},{"ddd":0,"ind":11,"ty":4,"nm":"roda2","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":-87,"ix":10},"p":{"a":0,"k":[84.6,93.788,0],"ix":2},"a":{"a":0,"k":[-22.375,41.125,0],"ix":1},"s":{"a":0,"k":[70,70,100],"ix":6}},"ao":0,"shapes":[{"ty":"gr","it":[{"d":1,"ty":"el","s":{"a":0,"k":[16,16],"ix":2},"p":{"a":0,"k":[0,0],"ix":3},"nm":"Ellipse Path 1","mn":"ADBE Vector Shape - Ellipse","hd":false},{"ty":"st","c":{"a":0,"k":[0.4117647058823529,0.3764705882352941,0.7686274509803922,1],"ix":3},"o":{"a":0,"k":100,"ix":4},"w":{"a":0,"k":3,"ix":5},"lc":2,"lj":2,"bm":0,"nm":"Stroke 1","mn":"ADBE Vector Graphic - Stroke","hd":false},{"ty":"tr","p":{"a":0,"k":[-22.375,41.125],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Ellipse 1","np":3,"cix":2,"bm":0,"ix":1,"mn":"ADBE Vector Group","hd":false},{"ty":"gr","it":[{"ty":"tr","p":{"a":0,"k":[0,0],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Group 1","np":0,"cix":2,"bm":0,"ix":2,"mn":"ADBE Vector Group","hd":false},{"ty":"tm","s":{"a":0,"k":0,"ix":1},"e":{"a":1,"k":[{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":65,"s":[100]},{"t":75.0000030548126,"s":[0]}],"ix":2},"o":{"a":0,"k":0,"ix":3},"m":1,"ix":3,"nm":"Trim Paths 1","mn":"ADBE Vector Filter - Trim","hd":false}],"ip":0,"op":76.0000030955435,"st":0,"bm":0},{"ddd":0,"ind":12,"ty":4,"nm":"roda1","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":-72,"ix":10},"p":{"a":0,"k":[49.338,93.788,0],"ix":2},"a":{"a":0,"k":[-22.375,41.125,0],"ix":1},"s":{"a":0,"k":[70,70,100],"ix":6}},"ao":0,"shapes":[{"ty":"gr","it":[{"d":1,"ty":"el","s":{"a":0,"k":[16,16],"ix":2},"p":{"a":0,"k":[0,0],"ix":3},"nm":"Ellipse Path 1","mn":"ADBE Vector Shape - Ellipse","hd":false},{"ty":"tm","s":{"a":0,"k":0,"ix":1},"e":{"a":1,"k":[{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":55,"s":[100]},{"t":65.0000026475043,"s":[0]}],"ix":2},"o":{"a":0,"k":0,"ix":3},"m":1,"ix":2,"nm":"Trim Paths 1","mn":"ADBE Vector Filter - Trim","hd":false},{"ty":"st","c":{"a":0,"k":[0.4627450980392157,0.42745098039215684,0.8862745098039215,1],"ix":3},"o":{"a":0,"k":100,"ix":4},"w":{"a":0,"k":3,"ix":5},"lc":2,"lj":2,"bm":0,"nm":"Stroke 1","mn":"ADBE Vector Graphic - Stroke","hd":false},{"ty":"tr","p":{"a":0,"k":[-22.375,41.125],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Ellipse 1","np":4,"cix":2,"bm":0,"ix":1,"mn":"ADBE Vector Group","hd":false}],"ip":0,"op":76.0000030955435,"st":0,"bm":0},{"ddd":0,"ind":13,"ty":4,"nm":"linha2","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[70.162,71.563,0],"ix":2},"a":{"a":0,"k":[7.375,-6.875,0],"ix":1},"s":{"a":0,"k":[70,70,100],"ix":6}},"ao":0,"shapes":[{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":0,"k":{"i":[[0,0],[0,0]],"o":[[0,0],[0,0]],"v":[[-37.375,-6.875],[47.5,-6.875]],"c":false},"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"st","c":{"a":0,"k":[0.4627450980392157,0.42745098039215684,0.8862745098039215,1],"ix":3},"o":{"a":0,"k":100,"ix":4},"w":{"a":0,"k":3,"ix":5},"lc":1,"lj":1,"ml":4,"bm":0,"nm":"Stroke 1","mn":"ADBE Vector Graphic - Stroke","hd":false},{"ty":"tr","p":{"a":0,"k":[0,0],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Shape 1","np":3,"cix":2,"bm":0,"ix":1,"mn":"ADBE Vector Group","hd":false},{"ty":"tm","s":{"a":0,"k":0,"ix":1},"e":{"a":1,"k":[{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":22.93,"s":[100]},{"t":37.5525015295447,"s":[0]}],"ix":2},"o":{"a":0,"k":0,"ix":3},"m":1,"ix":2,"nm":"Trim Paths 1","mn":"ADBE Vector Filter - Trim","hd":false}],"ip":0,"op":76.0000030955435,"st":0,"bm":0},{"ddd":0,"ind":14,"ty":4,"nm":"linha1","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[70.162,60.363,0],"ix":2},"a":{"a":0,"k":[7.375,-6.875,0],"ix":1},"s":{"a":0,"k":[70,70,100],"ix":6}},"ao":0,"shapes":[{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":0,"k":{"i":[[0,0],[0,0]],"o":[[0,0],[0,0]],"v":[[-37.375,-6.875],[52.125,-6.875]],"c":false},"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"st","c":{"a":0,"k":[0.4627450980392157,0.42745098039215684,0.8862745098039215,1],"ix":3},"o":{"a":0,"k":100,"ix":4},"w":{"a":0,"k":3,"ix":5},"lc":1,"lj":1,"ml":4,"bm":0,"nm":"Stroke 1","mn":"ADBE Vector Graphic - Stroke","hd":false},{"ty":"tr","p":{"a":0,"k":[0,0],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Shape 1","np":3,"cix":2,"bm":0,"ix":1,"mn":"ADBE Vector Group","hd":false},{"ty":"tm","s":{"a":0,"k":0,"ix":1},"e":{"a":1,"k":[{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":15.62,"s":[100]},{"t":39.3800016039803,"s":[0]}],"ix":2},"o":{"a":0,"k":0,"ix":3},"m":1,"ix":2,"nm":"Trim Paths 1","mn":"ADBE Vector Filter - Trim","hd":false}],"ip":0,"op":76.0000030955435,"st":0,"bm":0},{"ddd":0,"ind":15,"ty":4,"nm":"carrinho","sr":1,"ks":{"o":{"a":0,"k":100,"ix":11},"r":{"a":0,"k":0,"ix":10},"p":{"a":0,"k":[65.175,65,0],"ix":2},"a":{"a":0,"k":[0,0,0],"ix":1},"s":{"a":0,"k":[70,70,100],"ix":6}},"ao":0,"shapes":[{"ty":"gr","it":[{"ind":0,"ty":"sh","ix":1,"ks":{"a":0,"k":{"i":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"o":[[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]],"v":[[-61.75,-47.75],[-47.75,-47.75],[-32.5,26.813],[39.5,26.563],[59.75,-22.75],[-42.75,-23.75]],"c":false},"ix":2},"nm":"Path 1","mn":"ADBE Vector Shape - Group","hd":false},{"ty":"st","c":{"a":0,"k":[0.4627450980392157,0.42745098039215684,0.8862745098039215,1],"ix":3},"o":{"a":0,"k":100,"ix":4},"w":{"a":0,"k":6,"ix":5},"lc":2,"lj":2,"bm":0,"nm":"Stroke 1","mn":"ADBE Vector Graphic - Stroke","hd":false},{"ty":"tr","p":{"a":0,"k":[0,0],"ix":2},"a":{"a":0,"k":[0,0],"ix":1},"s":{"a":0,"k":[100,100],"ix":3},"r":{"a":0,"k":0,"ix":6},"o":{"a":0,"k":100,"ix":7},"sk":{"a":0,"k":0,"ix":4},"sa":{"a":0,"k":0,"ix":5},"nm":"Transform"}],"nm":"Shape 1","np":3,"cix":2,"bm":0,"ix":1,"mn":"ADBE Vector Group","hd":false},{"ty":"tm","s":{"a":0,"k":0,"ix":1},"e":{"a":1,"k":[{"i":{"x":[0.667],"y":[1]},"o":{"x":[0.333],"y":[0]},"t":1,"s":[100]},{"t":54.0000021994651,"s":[0]}],"ix":2},"o":{"a":0,"k":0,"ix":3},"m":1,"ix":2,"nm":"Trim Paths 1","mn":"ADBE Vector Filter - Trim","hd":false}],"ip":0,"op":76.0000030955435,"st":0,"bm":0}],"markers":[]};
+/*
+  ==================== ORVEG QUICK EDIT ====================
+  1) नीचे हर vegetable की imageUrl में अपनी image URL डालें।
+  2) Vegetable prices रुपये per kg में हैं; tiffin की price प्रति tiffin है।
+  3) WhatsApp नंबर बदलना हो तो WHATSAPP_NUMBER में केवल country code + digits रखें।
+  खाली imageUrl होने पर सुंदर emoji placeholder दिखेगा।
+*/
+const WHATSAPP_NUMBER = "919340431036";
+const MINIMUM_ORDER = 100;
+const vegetables = [
+  {
+    id: "tomato", name: "टमाटर", emoji: "🍅", pricePerKg: 40,
+    imageUrl: "", // IMAGE URL 1: paste tomato image URL here
+    benefit: "विटामिन C और लाइकोपीन का स्रोत; संतुलित आहार में उपयोगी।"
+  },
+  {
+    id: "potato", name: "आलू", emoji: "🥔", pricePerKg: 30,
+    imageUrl: "", // IMAGE URL 2: paste potato image URL here
+    benefit: "कार्बोहाइड्रेट से ऊर्जा मिलती है; छिलके सहित खाने पर फाइबर भी मिलता है।"
+  },
+  {
+    id: "onion", name: "प्याज़", emoji: "🧅", pricePerKg: 35,
+    imageUrl: "", // IMAGE URL 3: paste onion image URL here
+    benefit: "फाइबर और पौधों के उपयोगी यौगिक प्रदान करता है।"
+  },
+  {
+    id: "spinach", name: "पालक", emoji: "🥬", pricePerKg: 50,
+    imageUrl: "", // IMAGE URL 4: paste spinach image URL here
+    benefit: "फोलेट, विटामिन K और आयरन सहित कई पोषक तत्वों का स्रोत।"
+  },
+  {
+    id: "palak-chicken-tiffin", name: "Non-Veg Tiffin: Paalak Chicken", emoji: "🍱", pricePerKg: 199,
+    unit: "plate", imageUrl: "", // Optional: यहाँ tiffin image URL डालें
+    benefit: "Ghar jaisa swad — Paalak Chicken + 4 Roti + Rice. A filling home-style meal."
+  }
+];
+const cart = {};
+const money = n => new Intl.NumberFormat("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:0}).format(n);
+const productGrid = document.getElementById("product-grid");
+const cartItems = document.getElementById("cart-items");
+const toastEl = document.getElementById("toast");
+let toastTimer;
+function toast(message){
+  toastEl.textContent = message; toastEl.classList.add("show");
+  clearTimeout(toastTimer); toastTimer = setTimeout(()=>toastEl.classList.remove("show"),2300);
+}
+function renderProducts(){
+  productGrid.innerHTML = vegetables.map(v => `
+    <article class="product">
+      ${v.imageUrl
+        ? `<img class="product-image" src="${escapeAttr(v.imageUrl)}" alt="${escapeAttr(v.name)}" loading="lazy" onerror="this.outerHTML='<div class=&quot;product-placeholder&quot;>${v.emoji}</div>'">`
+        : `<div class="product-placeholder" role="img" aria-label="${escapeAttr(v.name)}">${v.emoji}</div>`}
+      <h3>${v.name}</h3>
+      <p class="price">${money(v.pricePerKg)} <small>/ ${v.unit === "plate" ? "tiffin" : "kg"}</small></p>
+      <p class="desc">${v.benefit}</p>
+      <p class="expand-hint">Tap to view full details +</p>
+      <div class="product-details">
+        ${v.unit === "plate" ? `
+          <h4>What’s included</h4>
+          <ul><li>Paalak Chicken curry</li><li>4 fresh rotis</li><li>Steamed rice</li></ul>
+          <h4>About this Tiffin</h4>
+          <p>Ghar jaisa swad — a comforting, home-style meal made for a satisfying lunch or dinner. Enjoy leafy paalak cooked with chicken, paired with rotis and rice in one convenient tiffin.</p>
+          <h4>Price & serving</h4><p><strong>₹199 per tiffin</strong>. Select the number of tiffins you need below. Please confirm availability and delivery time on WhatsApp.</p>
+          <p><strong>Allergen note:</strong> Contains chicken. Preparation ingredients may vary; ask us about allergens before ordering.</p>
+        ` : `
+          <h4>About ${v.name}</h4><p>${v.benefit}</p>
+          <h4>Price & quantity</h4><p>${money(v.pricePerKg)} per kg. Select the quantity you need below. Produce availability may vary by day.</p>
+          <h4>Storage tip</h4><p>Wash just before use and store appropriately to help maintain freshness.</p>
+        `}
+      </div>
+      <div class="qty-row"><input id="qty-${v.id}" type="number" min="${v.unit === "plate" ? 1 : 0.25}" max="50" step="${v.unit === "plate" ? 1 : 0.25}" value="1" aria-label="${v.name} quantity"><button class="add" type="button" data-add="${v.id}"><span class="add-label">+ Add</span><span class="add-animation" aria-hidden="true"></span></button></div>
+    </article>`).join("");
+  productGrid.querySelectorAll(".product").forEach(card=>card.addEventListener("click",event=>{
+    if(event.target.closest("button,input,label,a")) return;
+    const wasExpanded=card.classList.contains("expanded");
+    productGrid.querySelectorAll(".product.expanded").forEach(openCard=>openCard.classList.remove("expanded"));
+    if(!wasExpanded) card.classList.add("expanded");
+  }));
+  productGrid.querySelectorAll("[data-add]").forEach(btn=>btn.addEventListener("click",()=>{
+    const v=vegetables.find(x=>x.id===btn.dataset.add);
+    const input=document.getElementById("qty-"+v.id);
+    const qty=Number(input.value);
+    const minQty = v.unit === "plate" ? 1 : 0.25;
+    if(!Number.isFinite(qty)||qty<minQty||qty>50||(v.unit === "plate" && !Number.isInteger(qty))){toast(v.unit === "plate" ? "Please enter a whole number of tiffins." : "Please enter quantity between 0.25 and 50 kg.");return;}
+    cart[v.id]=(cart[v.id]||0)+qty;
+    const animBox=btn.querySelector('.add-animation');
+    if(animBox && window.customElements && customElements.get('lottie-player')){
+      animBox.innerHTML='<lottie-player autoplay mode="normal" style="width:42px;height:42px"></lottie-player>';
+      const player=animBox.querySelector('lottie-player');
+      player.load(ADD_TO_CART_ANIMATION);
+      btn.classList.add('is-animating');
+      setTimeout(()=>{btn.classList.remove('is-animating');animBox.innerHTML='';},950);
+    }
+    renderCart(); toast(v.name+" added to cart.");
+  }));
+}
+function escapeAttr(s){return String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function subtotal(){return vegetables.reduce((sum,v)=>sum+(cart[v.id]||0)*v.pricePerKg,0);}
+function fmtQty(q){return Number(q.toFixed(2)).toLocaleString("en-IN",{maximumFractionDigits:2});}
+function renderCart(){
+  const entries=vegetables.filter(v=>(cart[v.id]||0)>0);
+  document.getElementById("cart-count").textContent=entries.reduce((s,v)=>s+cart[v.id],0).toLocaleString("en-IN",{maximumFractionDigits:2});
+  if(!entries.length) cartItems.innerHTML='<div class="empty">Your Cart अभी खाली है। ऊपर से सब्ज़ियाँ जोड़ें।</div>';
+  else cartItems.innerHTML=entries.map(v=>`
+    <div class="cart-item">
+      <div><strong>${v.emoji} ${v.name}</strong><small>${money(v.pricePerKg)} × ${fmtQty(cart[v.id])} ${v.unit === "plate" ? "tiffin" : "kg"} = ${money(v.pricePerKg*cart[v.id])}</small></div>
+      <div class="cart-controls"><button class="qty-btn" data-minus="${v.id}" aria-label="Decrease ${v.name} quantity">−</button><strong>${fmtQty(cart[v.id])}</strong><button class="qty-btn" data-plus="${v.id}" aria-label="Increase ${v.name} quantity">+</button><button class="remove-btn" data-remove="${v.id}" aria-label="Remove ${v.name}">×</button></div>
+    </div>`).join("");
+  cartItems.querySelectorAll("[data-minus]").forEach(b=>b.onclick=()=>{const id=b.dataset.minus;const v=vegetables.find(x=>x.id===id);const step=v.unit === "plate" ? 1 : .25;cart[id]=Math.max(0,(cart[id]||0)-step);if(cart[id]===0)delete cart[id];renderCart();});
+  cartItems.querySelectorAll("[data-plus]").forEach(b=>b.onclick=()=>{const id=b.dataset.plus;const v=vegetables.find(x=>x.id===id);cart[id]=(cart[id]||0)+(v.unit === "plate" ? 1 : .25);renderCart();});
+  cartItems.querySelectorAll("[data-remove]").forEach(b=>b.onclick=()=>{delete cart[b.dataset.remove];renderCart();});
+  const sum=subtotal();
+  document.getElementById("subtotal").textContent=money(sum);
+  document.getElementById("total").textContent=money(sum);
+  const warning=document.getElementById("minimum-warning");
+  if(sum===0){warning.textContent="ऑर्डर भेजने के लिए Minimum Order ₹100 की सब्ज़ियाँ जोड़ें।";warning.style.color="var(--danger)";}
+  else if(sum<MINIMUM_ORDER){warning.textContent=`Your order value is ${money(sum)}. Minimum order ₹100 है; ${money(MINIMUM_ORDER-sum)} और add करें।`;warning.style.color="var(--danger)";}
+  else{warning.textContent="न्यूनतम ऑर्डर पूरा है। Delivery Fee WhatsApp पर पुष्टि होगा।";warning.style.color="var(--green)";}
+}
+document.getElementById("clear-cart").addEventListener("click",()=>{Object.keys(cart).forEach(k=>delete cart[k]);renderCart();});
+document.getElementById("send-order").addEventListener("click",()=>{
+  const sum=subtotal();
+  if(sum<MINIMUM_ORDER){toast("ऑर्डर भेजने के लिए Minimum Order ₹100 की सब्ज़ियाँ जोड़ें।");return;}
+  const name=document.getElementById("customer-name").value.trim();
+  const phone=document.getElementById("customer-phone").value.trim();
+  const address=document.getElementById("customer-address").value.trim();
+  const note=document.getElementById("customer-note").value.trim();
+  if(!name||!phone||!address){toast("कृपया नाम, Mobile Number और पूरा पता भरें।");return;}
+  const lines=vegetables.filter(v=>(cart[v.id]||0)>0).map(v=>`• ${v.name}: ${fmtQty(cart[v.id])} ${v.unit === "plate" ? "tiffin" : "kg"} × ${money(v.pricePerKg)}/${v.unit === "plate" ? "tiffin" : "kg"} = ${money(cart[v.id]*v.pricePerKg)}`);
+  const message=[
+    "Hi orveg, I would like to place an order.",
+    "",
+    "Order Details:",
+    ...lines,
+    "",
+    `Items Subtotal: ${money(sum)}`,
+    "Delivery Fee: कृपया पुष्टि करें",
+    `Name: ${name}`,
+    `Mobile: ${phone}`,
+    `Delivery Address: ${address}`,
+    note?`विशेष निर्देश: ${note}`:"",
+    "",
+    "Please confirm my order and delivery time."
+  ].filter(Boolean).join("\n");
+  const url=`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  window.open(url,"_blank","noopener,noreferrer");
+});
+renderProducts();renderCart();
+</script>
+</body>
+</html>
